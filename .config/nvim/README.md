@@ -22,11 +22,7 @@ Welcome to my **LazyVim** dotfile repository—a thoughtfully configured setup t
 
 Getting started is simple:
 
-1. **Download LazyVim**:
-
-   Link: http://www.lazyvim.org/installation
-
-2. **Clone this repo**:
+1. **Clone this repo**:
    ```bash
    git clone https://github.com/ShayantanBose/nvim-plugins.git ~/.config/nvim
    ```
