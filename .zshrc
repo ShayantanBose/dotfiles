@@ -16,6 +16,8 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 
+export GTK_THEME=Dracula
+
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
