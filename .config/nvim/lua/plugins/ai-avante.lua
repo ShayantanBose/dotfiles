@@ -20,6 +20,12 @@ return {
       -- keymap = { accept = "<Tab>", next = "<M-]>", prev = "<M-[>" },
     },
 
+    ui = {
+      sections = {
+        todo = false,
+      },
+    },
+
     -- You can keep other providers defined if you want to switch later,
     -- but the active provider is "copilot".
     providers = {
