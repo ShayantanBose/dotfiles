@@ -1,4 +1,5 @@
 export EDITOR=nvim
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -14,7 +15,6 @@ if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
-
 
 export GTK_THEME=Dracula
 
@@ -81,18 +81,23 @@ eval "$(zoxide init --cmd cd zsh)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
+# NVM setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(zoxide init zsh)"
 
-GOPATH=$HOME/go  PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
+
+# Android setup
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# Tmux setup
+export TMUX_CONF="$HOME/.config/tmux/tmux.conf"
 
+# Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
