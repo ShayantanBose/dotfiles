@@ -15,7 +15,7 @@ end
 -- NOTE: File Explorer
 return {
   "nvim-tree/nvim-tree.lua",
-  enabled = false,
+  enabled = true,
   cmd = {
     "NvimTreeOpen",
     "NvimTreeToggle",
@@ -48,6 +48,7 @@ return {
       timeout = 5000,
     },
     view = {
+      side = "right",
       cursorline = true,
       width = 40,
       float = {

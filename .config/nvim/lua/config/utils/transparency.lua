@@ -1,5 +1,10 @@
 local M = {}
 
+local function is_nvchad_mode()
+  local ok_nvconfig, nvconfig = pcall(require, "nvconfig")
+  return ok_nvconfig and nvconfig.base46 and vim.g.colorscheme == "nvchad"
+end
+
 local manual_groups = {
   "Normal",
   "NormalNC",
@@ -26,11 +31,6 @@ local manual_groups = {
   "MsgArea",
   "MsgSeparator",
   "WinSeparator",
-  "NeoTreeNormal",
-  "NeoTreeNormalNC",
-  "NeoTreeEndOfBuffer",
-  "NeoTreeFloatNormal",
-  "NeoTreeFloatBorder",
   "NvimTreeNormal",
   "NvimTreeNormalNC",
   "NvimTreeEndOfBuffer",
@@ -164,6 +164,10 @@ local function set_transparent_hl()
 end
 
 function M.apply_if_enabled()
+  if is_nvchad_mode() then
+    return
+  end
+
   if vim.g._manual_transparency then
     set_transparent_hl()
   end
@@ -174,6 +178,7 @@ function M.toggle()
   local ok_nvconfig, nvconfig = pcall(require, "nvconfig")
 
   if ok_base46 and ok_nvconfig and nvconfig.base46 and vim.g.colorscheme == "nvchad" then
+    vim.g._manual_transparency = false
     base46.toggle_transparency()
     if nvconfig.base46.transparency then
       vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
