@@ -1,3 +1,5 @@
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46/"
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -30,11 +32,23 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  git = {
+    timeout = 300, -- allow slower networks to finish clone/checkout
+  },
+  install = { colorscheme = { "nvchad", "tokyonight", "aether", "base16", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
+    notify = vim.g.colorscheme == "nvchad", -- notify on update
   }, -- automatically check for plugin updates
+  diff = {
+    cmd = "diffview.nvim",
+  },
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = false, -- get a notification when changes are found
+  },
+  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
   performance = {
     rtp = {
       -- disable some rtp plugins
@@ -45,7 +59,7 @@ require("lazy").setup({
         -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
-        "tutor",
+        -- "tutor",
         "zipPlugin",
       },
     },
