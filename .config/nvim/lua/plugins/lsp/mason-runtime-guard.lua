@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   {
-    "mason-org/mason-lspconfig.nvim",
+    "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
       local blocked = {
         fsautocomplete = true,
@@ -27,7 +27,7 @@ return {
     end,
   },
   {
-    "mason-org/mason.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, opts)
       local blocked = {}
 

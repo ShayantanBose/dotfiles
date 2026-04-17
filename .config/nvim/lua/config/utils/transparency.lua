@@ -5,6 +5,40 @@ local function is_nvchad_mode()
   return ok_nvconfig and nvconfig.base46 and vim.g.colorscheme == "nvchad"
 end
 
+local nvchad_surface_groups = {
+  "Normal",
+  "NormalNC",
+  "NormalSB",
+  "NormalFloat",
+  "FloatBorder",
+  "SignColumn",
+  "LineNr",
+  "CursorLineNr",
+  "FoldColumn",
+  "EndOfBuffer",
+  "WinBar",
+  "WinBarNC",
+  "WinSeparator",
+  "NvimTreeNormal",
+  "NvimTreeNormalNC",
+  "NvimTreeEndOfBuffer",
+  "NvimTreeVertSplit",
+  "WhichKeyNormal",
+  "WhichKeyFloat",
+  "WhichKeyBorder",
+  "TelescopeNormal",
+  "TelescopeBorder",
+  "TelescopePromptNormal",
+  "TelescopePromptBorder",
+  "TelescopeResultsNormal",
+  "TelescopePreviewNormal",
+  "SnacksPicker",
+  "SnacksPickerBorder",
+  "SnacksPickerInputBorder",
+  "SnacksInputNormal",
+  "SnacksInputBorder",
+}
+
 local manual_groups = {
   "Normal",
   "NormalNC",
@@ -163,8 +197,19 @@ local function set_transparent_hl()
   vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
 end
 
+local function set_nvchad_surface_transparency()
+  for _, group in ipairs(nvchad_surface_groups) do
+    set_bg_none(group)
+  end
+  vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
+end
+
 function M.apply_if_enabled()
   if is_nvchad_mode() then
+    local ok_nvconfig, nvconfig = pcall(require, "nvconfig")
+    if ok_nvconfig and nvconfig.base46 and nvconfig.base46.transparency then
+      set_nvchad_surface_transparency()
+    end
     return
   end
 
@@ -181,6 +226,7 @@ function M.toggle()
     vim.g._manual_transparency = false
     base46.toggle_transparency()
     if nvconfig.base46.transparency then
+      set_nvchad_surface_transparency()
       vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
       vim.notify("Toggled On", vim.log.levels.INFO, { title = "Transparency" })
     else
