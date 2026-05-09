@@ -23,6 +23,7 @@ This repository contains my day-to-day dotfiles for a Wayland-based Linux setup.
 
 - [Quick start](#quick-start)
 - [Repository structure](#repository-structure)
+- [Screenshots](#screenshots)
 - [Neovim configuration deep dive](#neovim-configuration-deep-dive)
 - [Other configs (quick overview)](#other-configs-quick-overview)
 - [Troubleshooting](#troubleshooting)
@@ -81,6 +82,49 @@ ln -sfn "$(pwd)/.p10k.zsh" ~/.p10k.zsh
 ```
 
 ---
+
+## Screenshots
+
+Below is a quick visual tour of the setup. Each image highlights a different part of the workflow, presented in a simple grid layout.
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>File Explorer</strong><br />
+      Focused project navigation with a clean, low-noise tree view.
+    </td>
+    <td width="50%">
+      <strong>Home Dashboard</strong><br />
+      A calm, centered landing view for daily edits and quick access.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="imgs/tree.png" alt="Neovim file tree" width="100%" />
+    </td>
+    <td>
+      <img src="imgs/home.png" alt="Neovim home dashboard" width="100%" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>File Picker</strong><br />
+      Fast, fuzzy file search optimized for keyboard flow.
+    </td>
+    <td width="50%">
+      <strong>Git TUI</strong><br />
+      Staged changes and history in a tight, terminal-first UI.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="imgs/fileSelector.png" alt="Neovim file picker" width="100%" />
+    </td>
+    <td>
+      <img src="imgs/lazygit.png" alt="Lazygit interface" width="100%" />
+    </td>
+  </tr>
+</table>
 
 ## Neovim configuration deep dive
 
