@@ -8,9 +8,9 @@ local M = {}
 local highlights = require("highlights")
 
 M.base46 = {
-  theme = "chadracula-evondev",
+  theme = "github_dark",
   transparency = true,
-  theme_toggle = { "chadracula-evondev", "sunrise_breeze" },
+  theme_toggle = { "github_dark", "sunrise_breeze" },
   hl_override = highlights.override,
   hl_add = highlights.add,
 }
