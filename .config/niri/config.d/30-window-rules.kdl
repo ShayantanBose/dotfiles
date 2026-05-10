@@ -1,0 +1,25 @@
+// ============================================================================
+// WINDOW RULES
+// ============================================================================
+
+window-rule {
+    geometry-corner-radius 16
+    clip-to-geometry true
+}
+
+// ZapZap floating window
+window-rule {
+  match app-id="zapzap"
+  open-floating true
+  min-width 1235
+  min-height 704
+}
+
+// PiP Rules
+window-rule {
+  match title="(?i)picture.in.picture"
+  open-floating true
+  default-floating-position x=0 y=0 relative-to="top-right"
+  max-height 360
+  max-width 640
+}
