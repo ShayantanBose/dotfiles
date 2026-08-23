@@ -7,4 +7,4 @@ spawn-at-startup "bash" "-c" "systemctl --user import-environment XDG_MENU_PREFI
 
 spawn-at-startup "bash" "-c" "wl-paste --type text --watch cliphist store &"
 spawn-at-startup "bash" "-c" "wl-paste --type image --watch cliphist store &"
-spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "qs" "-c" "noctalia-shell"

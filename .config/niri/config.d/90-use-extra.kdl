@@ -1,0 +1,143 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// 90 — Your personal overrides
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// This file is YOURS. iNiR updates will never overwrite it.
+// Put any custom configuration here: extra binds, per-app window rules,
+// output configuration, named workspaces, etc.
+//
+// Since Niri evaluates config top-to-bottom, settings here take effect
+// after all other config.d files. For window-rule properties, all matching
+// rules accumulate. For scalar values (like gaps), the last one wins.
+//
+// Examples:
+//
+//   // Named workspaces (sticky, always present)
+//   workspace "browser"
+//   workspace "code"
+//   workspace "music"
+//
+//   // Per-app workspace assignment
+//   window-rule {
+//       match app-id="firefox"
+//       open-on-workspace "browser"
+//   }
+//
+//   // Extra keybind
+//   binds {
+//       Mod+P { spawn "rofi" "-show" "drun"; }
+//   }
+//
+//   // Output config for your specific monitor
+//   output "DP-1" {
+//       mode "3440x1440@100.000"
+//       scale 1
+//       position x=0 y=0
+//   }
+// ─────────────────────────────────────────────────────────────────────────────
+
+output "Lenovo Group Limited S22e-20 V5GVL227" {
+    mode "1920x1080@60.000"
+    transform "normal"
+    position x=0 y=-1080
+}
+
+output "Najing CEC Panda FPD Technology CO. ltd 0x004D Unknown" {
+    position x=0 y=0
+}
+
+window-rule {
+    match app-id="impala-popup"
+    open-floating true
+    max-width 1440
+    max-height 794
+}
+
+window-rule {
+  match app-id="zapzap"
+  open-floating true
+  min-width 1235
+  min-height 704
+}
+
+// PiP Rules
+window-rule {
+  match title="(?i)picture.in.picture"
+  open-floating true
+  default-floating-position x=0 y=0 relative-to="top-right"
+  max-height 360
+  max-width 640
+}
+
+window-rule {
+  match app-id="kitty"
+  background-effect {
+    blur true
+  }
+}// ─────────────────────────────────────────────────────────────────────────────
+// 90 — Your personal overrides
+// ─────────────────────────────────────────────────────────────────────────────
+//
+// This file is YOURS. iNiR updates will never overwrite it.
+// Put any custom configuration here: extra binds, per-app window rules,
+// output configuration, named workspaces, etc.
+//
+// Since Niri evaluates config top-to-bottom, settings here take effect
+// after all other config.d files. For window-rule properties, all matching
+// rules accumulate. For scalar values (like gaps), the last one wins.
+//
+// Examples:
+//
+//   // Named workspaces (sticky, always present)
+//   workspace "browser"
+//   workspace "code"
+//   workspace "music"
+//
+//   // Per-app workspace assignment
+//   window-rule {
+//       match app-id="firefox"
+//       open-on-workspace "browser"
+//   }
+//
+//   // Extra keybind
+//   binds {
+//       Mod+P { spawn "rofi" "-show" "drun"; }
+//   }
+//
+//   // Output config for your specific monitor
+//   output "DP-1" {
+//       mode "3440x1440@100.000"
+//       scale 1
+//       position x=0 y=0
+//   }
+// ─────────────────────────────────────────────────────────────────────────────
+
+window-rule {
+    match app-id="impala-popup"
+    open-floating true
+    max-width 1440
+    max-height 794
+}
+
+window-rule {
+  match app-id="zapzap"
+  open-floating true
+  min-width 1235
+  min-height 704
+}
+
+// PiP Rules
+window-rule {
+  match title="(?i)picture.in.picture"
+  open-floating true
+  default-floating-position x=0 y=0 relative-to="top-right"
+  max-height 360
+  max-width 640
+}
+
+window-rule {
+  match app-id="kitty"
+  background-effect {
+    blur true
+  }
+}

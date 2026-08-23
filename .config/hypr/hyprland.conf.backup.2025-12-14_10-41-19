@@ -1,6 +1,7 @@
 # Hyprland Configuration
 # https://wiki.hypr.land/Configuring/
 
+
 # ======================
 # ENVIRONMENT VARIABLES
 # ======================
@@ -14,8 +15,9 @@ env = QT_QPA_PLATFORM,xcb
 # ==================
 # MONITOR CONFIG
 # ==================
-# monitor = eDP-2, 2560x1600@239.998993, 2560x0, 1, vrr, 1
+# Monitors from existing configuration
 monitor=eDP-1, 1920x1080@144, auto-right, 1
+
 monitor = , preferred,auto,auto
 
 # ==================
@@ -65,7 +67,7 @@ decoration {
         render_power = 5
         offset = 0 5
         color = rgba(00000070)
-    }
+   }
 }
 
 # ==================
@@ -139,20 +141,6 @@ windowrulev2 = float, class:^(org.quickshell)$
 windowrulev2 = opacity 0.9 0.9, floating:0, focus:0
 windowrulev2 = opacity 0.8 1.0, class:^(kitty)$
 
-# Picture-in-picture overlays
-windowrule = tag +pip, title:(Picture.?in.?[Pp]icture)
-windowrule = float, tag:pip
-windowrule = pin, tag:pip
-windowrule = size 600 338, tag:pip
-windowrule = keepaspectratio, tag:pip
-windowrule = noborder, tag:pip
-windowrule = opacity 1 1, tag:pip
-windowrule = move 100%-w-40 4%, tag:pip
-
-# Bitwarden
-windowrulev2 = float, title:^(Extension: \(Bitwarden Password Manager\) - Bitwarden — Zen Browser)$
-windowrulev2 = float, title:(?i)extension
-
 layerrule = noanim, ^(quickshell)$
 
 # ==================
@@ -173,7 +161,7 @@ bind = $mod SHIFT, N, exec, dms ipc call notepad toggle
 bind = $mod, Y, exec, dms ipc call dankdash wallpaper
 bind = $mod, TAB, exec, dms ipc call hypr toggleOverview
 bind = $mod, B, exec, $browser
-bind = $mod, F, exec, $files
+bind = $mod, E, exec, $files
 
 # === Cheat sheet
 bind = $mod SHIFT, Slash, exec, dms ipc call keybinds toggle hyprland
@@ -196,14 +184,13 @@ bindl = , XF86AudioPause, exec, playerctl play-pause
 bindl = , XF86AudioNext, exec, playerctl next
 bindl = , XF86AudioPrev, exec, playerctl previous
 
-
 # === Brightness Controls ===
 bindel = , XF86MonBrightnessUp, exec, dms ipc call brightness increment 5 ""
 bindel = , XF86MonBrightnessDown, exec, dms ipc call brightness decrement 5 ""
 
 # === Window Management ===
 bind = $mod, W, killactive
-#bind = $mod, F, fullscreen, 1
+bind = $mod, F, fullscreen, 1
 bind = , F11, fullscreen, 0
 bind = $mod SHIFT, T, togglefloating
 #bind = $mod, W, togglegroup
@@ -324,10 +311,10 @@ bind = ALT, Print, exec, dms screenshot window
 # === System Controls ===
 bind = $mod SHIFT, P, dpms, off
 
+
 # ==================
 # GESTURES
 # ==================
 gesture = 3, left, dispatcher, exec, hyprctl dispatch workspace r+1
 gesture = 3, right, dispatcher, exec, hyprctl dispatch workspace r-1
 gesture = 3, up, dispatcher, exec, dms ipc call hypr toggleOverview
-

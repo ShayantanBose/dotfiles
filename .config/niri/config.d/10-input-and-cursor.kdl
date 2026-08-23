@@ -29,9 +29,7 @@ input {
     }
     mouse {
         accel-profile "flat"
-        natural-scroll
     }
-
     // even though reload says its invalid it is valid
     focus-follows-mouse
 

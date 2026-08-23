@@ -8,60 +8,42 @@ binds {
     Mod+Shift+E { quit; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     
-    // ii Window Switcher (Alt+Tab)
-    Alt+Tab { spawn "/home/shino/.local/bin/inir" "altSwitcher" "next"; }
-    Alt+Shift+Tab { spawn "/home/shino/.local/bin/inir" "altSwitcher" "previous"; }
-    
-    // ii Overlay
-    Super+G { spawn "/home/shino/.local/bin/inir" "overlay" "toggle"; }
-
-    // ii Overview (daemon)
-    Mod+Space repeat=false { spawn "/home/shino/.local/bin/inir" "overview" "toggle"; }
-    
-    // ii Clipboard
-    Mod+V { spawn "/home/shino/.local/bin/inir" "clipboard" "toggle"; }
-    
-    // ii Lock screen
-    Mod+Alt+L allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "lock" "activate"; }
-    
-    // ii Region tools
-    Mod+Shift+S { spawn "/home/shino/.local/bin/inir" "region" "screenshot"; }
-    Mod+Shift+X { spawn "/home/shino/.local/bin/inir" "region" "ocr"; }
-    Mod+Shift+A { spawn "/home/shino/.local/bin/inir" "region" "search"; }
-    
-    // ii Wallpaper selector
-    Mod+Shift+T { spawn "/home/shino/.local/bin/inir" "wallpaperSelector" "toggle"; }
-    
-    // ii Settings
-    Mod+Comma { spawn "/home/shino/.local/bin/inir" "settings"; }
-    
-    // ii Cheatsheet
-    Mod+Slash { spawn "/home/shino/.local/bin/inir" "cheatsheet" "toggle"; }
-    
-    // ii Panel family (cycle between Material ii and Waffle styles)
-    Mod+Shift+W { spawn "/home/shino/.local/bin/inir" "panelFamily" "cycle"; }
-    
-    // Applications (uses configured terminal from Settings)
-    Mod+T { spawn "/home/shino/.local/bin/inir" "terminal"; }
-    Mod+Return { spawn "/home/shino/.local/bin/inir" "terminal"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+E { spawn "nautilus"; }
     Super+b { spawn "bash" "-c" "xdg-open https://"; }
-    
+
+    // Noctalia
+    Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+S { spawn-sh "qs -c noctalia-shell ipc call controlCenter toggle"; }
+    Mod+Comma { spawn-sh "qs -c noctalia-shell ipc call settings toggle"; }
+    Mod+Backspace{spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+Shift+T { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
+    Mod+V { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "plugin:clipboard" "toggle"; }
+    Mod+Shift+N { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "plugin:sticky-notes" "toggle"; }
+    Mod+Alt+L { spawn-sh "~/.local/share/quickshell-lockscreen/lock.sh"; }
+    Mod+slash{ spawn-sh "qs -c noctalia-shell ipc call plugin:keybind-cheatsheet toggle"; }
+
     // Window management
-    Mod+W repeat=false { spawn "/home/shino/.local/bin/inir" "close-window"; }
+    // Mod+W repeat=false { spawn "/home/shino/.local/bin/inir" "close-window"; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+A { toggle-window-floating; }
+    Mod+W{close-window;}
 
     // Focus
-    Mod+Left { focus-column-left; }
-    Mod+Right { focus-column-right; }
-    Mod+Up { focus-window-up; }
-    Mod+Down { focus-window-down; }
+    // Mod+Left { focus-column-left; }
+    // Mod+Right { focus-column-right; }
+    // Mod+Up { focus-window-up; }
+    // Mod+Down { focus-window-down; }
     Mod+H { focus-column-left; }
     Mod+J { focus-window-down; }
     Mod+K { focus-window-up; }
     Mod+L { focus-column-right; }
+    Mod+Left { focus-monitor-left; }
+    Mod+Right { focus-monitor-right; }
+    // Mod+Up { focus-window-up; }
+    // Mod+Down { focus-window-down; }
     
     // Move windows
     Mod+Shift+Left { move-column-left; }
@@ -90,43 +72,35 @@ binds {
     Mod+Shift+4 { move-column-to-workspace 4; }
     Mod+Shift+5 { move-column-to-workspace 5; }
     
-    // Screenshots (native)
+    // Screenshots
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+    Alt+Shift+X { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "plugin:screen-toolkit" "ocr"; }
+    Alt+Ctrl+X { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "plugin:screen-toolkit" "annotateFullscreen"; }
+
     
     // ========================================================================
     // HARDWARE KEYS - Audio, Brightness, Media
     // ========================================================================
     // These use ii IPC so the OSD (On Screen Display) shows feedback
     
-    // Volume (hardware keys)
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "audio" "volumeUp"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "audio" "volumeDown"; }
-    XF86AudioMute allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "audio" "mute"; }
-    XF86AudioMicMute allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "audio" "micMute"; }
-    
+    // Audio & Brightness
+    XF86AudioRaiseVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
     // Brightness (hardware keys)
-    XF86MonBrightnessUp allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "brightness" "increment"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "brightness" "decrement"; }
-    
+    // XF86MonBrightnessUp allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "brightness" "increment"; }
+    // XF86MonBrightnessDown allow-when-locked=true { spawn "/home/shino/.local/bin/inir" "brightness" "decrement"; }
+
     // Media playback (hardware keys)
     // Mpris for some-reason doesn't work have to user playerctl
     // XF86AudioPlay { spawn "/home/shino/.local/bin/inir" "mpris" "playPause"; }
     // XF86AudioPause { spawn "/home/shino/.local/bin/inir" "mpris" "playPause"; }
     XF86AudioPlay { spawn "playerctl" "play-pause"; }
-    XF86AudioNext { spawn "/home/shino/.local/bin/inir" "mpris" "next"; }
-    XF86AudioPrev { spawn "/home/shino/.local/bin/inir" "mpris" "previous"; }
-    
-    // Music control (keyboard alternatives for keyboards without media keys)
-    Ctrl+Mod+Space { spawn "/home/shino/.local/bin/inir" "mpris" "playPause"; }
-    Mod+Alt+N { spawn "/home/shino/.local/bin/inir" "mpris" "next"; }
-    Mod+Alt+P { spawn "/home/shino/.local/bin/inir" "mpris" "previous"; }
-    Mod+Shift+M { spawn "/home/shino/.local/bin/inir" "audio" "mute"; }
-    Mod+Shift+P { spawn "/home/shino/.local/bin/inir" "mpris" "playPause"; }
-    Mod+Shift+N { spawn "/home/shino/.local/bin/inir" "mpris" "next"; }
-    Mod+Shift+B { spawn "/home/shino/.local/bin/inir" "mpris" "previous"; }
+    // XF86AudioNext { spawn "/home/shino/.local/bin/inir" "mpris" "next"; }
+    // XF86AudioPrev { spawn "/home/shino/.local/bin/inir" "mpris" "previous"; }
     
     // Power / Session
-    Mod+Backspace { spawn "/home/shino/.local/bin/inir" "session" "toggle"; }
+    // Mod+Backspace { spawn "/home/shino/.local/bin/inir" "session" "toggle"; }
 }
